@@ -1,3 +1,26 @@
 ### teste da aplicação
-
+### Lista de Carros
 GET http://localhost:5248/api/carros
+
+### Buscar Carro pelo ID
+GET http://localhost:5248/api/carros/1
+
+
+### Cadastrar Carro
+POST  http://localhost:5248/api/carros
+Content-Type: application/json
+
+{
+    "Name": "Ferrari"
+}
+
+### Atualizar Carro
+PUT  http://localhost:5248/api/carros/1
+Content-Type: application/json
+
+{
+    "Name": "Ferrari"
+}
+
+### Remove o Carro pelo ID
+DELETE http://localhost:5248/api/carros/1
