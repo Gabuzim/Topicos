@@ -1,0 +1,6 @@
+### Lista de Modelos
+GET http://localhost:5248/api/modelos
+
+
+### Buscar Modelos por Id
+GET http://localhost:5248/api/modelos/1

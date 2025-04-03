@@ -20,6 +20,9 @@ Content-Type: application/json
 
 {
     "Name": "Ferrari"
+    "modelo: {
+        "id": 1,
+    }"
 }
 
 ### Remove o Carro pelo ID

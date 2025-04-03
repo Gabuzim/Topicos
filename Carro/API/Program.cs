@@ -18,6 +18,17 @@ app.MapGet("/api/carros", ([FromServices] AppDataContext ctx) => {
 } );
 
     app.MapPost("/api/carros", ([FromServices] AppDataContext ctx, [FromBody] Carro carro) => {
+
+        var modelo = ctx.Modelos.Find(carro.Modelo.Id);
+
+    if (modelo != null) 
+
+    if (modelo == null || carro.Name.Length < 3) {
+        return Results.BadRequest("nome do carro deve conter mais de 3char!");
+    }
+
+        carro.Modelo = modelo;
+
         ctx.Carros.Add(carro);
         ctx.SaveChanges();
         return Results.Created("", carro);
@@ -57,5 +68,24 @@ app.MapGet ("/api/carros/{id}", ([FromRoute]int id, [FromServices] AppDataContex
         return Results.NoContent();
         });
 
+app.MapGet("/api/modelos", ([FromServices] AppDataContext ctx) => {
+
+var modelos = ctx.Modelos.ToList();
+    if(modelos == null || modelos.Count == 0){
+        return Results.NotFound();
+    }
+
+    return Results.Ok(modelos);
+
+} );
+app.MapGet("/api/modelos", ([FromRoute]  int id , [FromServices] AppDataContext ctx) => {
+
+var modelos = ctx.Modelos.Find(id);
+    if(modelos == null){
+        return Results.NotFound();
+      }
+    return Results.Ok(modelos);
+
+} );
 
 app.Run();
